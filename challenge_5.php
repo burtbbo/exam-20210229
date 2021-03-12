@@ -23,24 +23,27 @@ $sql = "SELECT
 FROM
     Customers
 WHERE
-    Customers.customer_id IN (SELECT DISTINCT
+    Customers.customer_id IN (SELECT 
             Orders.customer_id
         FROM
             Orders
         WHERE
-            Orders.product_name = 'A')
-        AND Customers.customer_id IN (SELECT DISTINCT
+            Orders.product_name = 'A'
+        GROUP BY Orders.customer_id)
+        AND Customers.customer_id IN (SELECT 
             Orders.customer_id
         FROM
             Orders
         WHERE
-            Orders.product_name = 'B')
-        AND Customers.customer_id NOT IN (SELECT DISTINCT
+            Orders.product_name = 'B'
+        GROUP BY Orders.customer_id)
+        AND Customers.customer_id NOT IN (SELECT 
             Orders.customer_id
         FROM
             Orders
         WHERE
-            Orders.product_name = 'C')
+            Orders.product_name = 'C'
+        GROUP BY Orders.customer_id)
 ORDER BY Customers.customer_id";
 
 echo $sql;
