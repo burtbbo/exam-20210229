@@ -31,3 +31,5 @@ FROM
     daily.Person
 GROUP BY daily.Person.Email
 HAVING COUNT(daily.Person.Email) > 1;";
+
+echo $sql;

@@ -43,4 +43,4 @@ WHERE
             Orders.product_name = 'C')
 ORDER BY Customers.customer_id";
 
-
+echo $sql;
